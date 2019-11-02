@@ -23,19 +23,23 @@ from PyInstaller.compat import is_win, is_cygwin, is_py2
 REQUIREMENTS = [
     'setuptools',
     'altgraph',
+    'macholib >= 1.8;sys_platform=="darwin"',
+    'pywin32-ctypes >= 0.2.0;sys_platform=="win32"',
+    'pefile >= 2017.8.1;sys_platform=="win32"',
+    'dis3;python_version<"3.0"'
 ]
 
-# dis3 is used for our version of modulegraph
-if sys.version_info < (3,):
-    REQUIREMENTS.append('dis3')
+# # dis3 is used for our version of modulegraph
+# if sys.version_info < (3,):
+#     REQUIREMENTS.append('dis3')
 
-# For Windows install PyWin32 if not already installed.
-if sys.platform.startswith('win'):
-    REQUIREMENTS += ['pywin32-ctypes >= 0.2.0',
-                     'pefile >= 2017.8.1']
+# # For Windows install PyWin32 if not already installed.
+# if sys.platform.startswith('win'):
+#     REQUIREMENTS += ['pywin32-ctypes >= 0.2.0',
+#                      'pefile >= 2017.8.1']
 
-if sys.platform == 'darwin':
-    REQUIREMENTS.append('macholib >= 1.8')
+# if sys.platform == 'darwin':
+#     REQUIREMENTS.append('macholib >= 1.8')
 
 
 # Create long description from README.rst and doc/CHANGES.rst.
